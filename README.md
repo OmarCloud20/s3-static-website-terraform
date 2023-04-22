@@ -26,7 +26,7 @@
 This Terraform module creates an S3 bucket with a CloudFront distribution and a Route53 A record for the domain name. The S3 bucket is configured to serve static website content via CloudFront distribution only. The S3 bucket is not publicly accessible and the content is only accessible through the CloudFront distribution.
 The Route53 A record is configured to point to the CloudFront distribution. 
 
-The module can be downloaded and hosted locally or it can be used directly from GitHub. The module designed to used with [Terragrunt](https://terragrunt.gruntwork.io/) ;however, it can be used with Terraform as well. 
+The module can be downloaded and hosted locally or it can be used directly from GitHub. The module designed to be used with [Terragrunt](https://terragrunt.gruntwork.io/) ;however, it can be used with Terraform as well. 
 
 ### How does the module work?
 
@@ -106,8 +106,11 @@ inputs = {
 }
 ```
 
-Note: The CNAME value is a custom name that is used in the URLS for the files to be served by the CloudFront distribution. For example, if the domain name is `example.com` and bucket name is `bucket` then the CNAME value must be `bucket.example.com`. A second example, if the domain name is `test.com` and bucket name is `test-folder` then the CNAME value must be `test-folder.test.com`.
-To simplify it, name the S3 bucket the same as the CNAME value. 
+Notes: 
+
+- The CNAME value is a custom name that is used in the URLS for the files to be served by the CloudFront distribution. For example, if the domain name is `example.com` and bucket name is `bucket` then the CNAME value must be `bucket.example.com`. A second example, if the domain name is `test.com` and bucket name is `test-folder` then the CNAME value must be `test-folder.test.com`.
+
+- To simplify it, name the S3 bucket the same as the CNAME value. 
 
 7. Configure S3 remote state backend in another file named `terragrunt.hcl` in the environment directory
 
@@ -124,7 +127,10 @@ remote_state {
   }
 }
 ```
-Note: Terragrunt will automatically merge the configuration from the `terragrunt.hcl` file in the environment directory with the configuration from the `terragrunt.hcl` file in the application directory. Terragrunt will also automatically create the S3 bucket and DynamoDB table if they do not exist; therefore, ensure the name of the S3 bucket is unique. The `profile` option is optional and is used to specify the AWS profile to use.
+Notes: 
+
+- Terragrunt will automatically merge the configuration from the `terragrunt.hcl` file in the environment directory with the configuration from the `terragrunt.hcl` file in the application directory. Terragrunt will also automatically create the S3 bucket and DynamoDB table if they do not exist; therefore, ensure the name of the S3 bucket is unique. 
+- The `profile` option is optional and is used to specify the AWS profile to use.
 
 8. This is an example of a directory structure for a development environment with a single application named `myapp` with a static website. The same structure can be used for the production environment. The final directory structure should look like the following example:
 
