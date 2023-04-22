@@ -72,7 +72,7 @@ It uploads the static website content to the S3 bucket using the `aws s3 sync` c
 Note: you can download the sample static website content using the following command:
 
 ```bash
-sudo curl -o website_sample.zip https://raw.githubusercontent.com/OmarCloud20/s3-static-site-terraform-module/main/website_sample.zip
+sudo curl -o website_sample.zip https://raw.githubusercontent.com/OmarCloud20/s3-static-website-terraform/main/website_sample.zip
 sudo unzip website_sample.zip
 ```
 Then, copy the content of the `website_sample` folder into the `website` folder.
@@ -87,7 +87,7 @@ include {
 }
 
 terraform {
-  source = "git::github.com/OmarCloud20/s3-static-site-terraform-module.git//.?ref=main"
+  source = "git::github.com/OmarCloud20/s3-static-website-terraform.git//.?ref=main"
 }
 
 inputs = {
