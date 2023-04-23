@@ -38,6 +38,15 @@ It uploads the static website content to the S3 bucket using the `aws s3 sync` c
 - `exclude` option is to delete terraform generated files from the `website` directory before uploading the content to the S3 bucket.
 - The `null_resource` resource is used to trigger the `aws s3 sync` command only when the `index.html` file is changed. This is useful when you want to upload the content to the S3 bucket only when the content is changed.
 
+
+### Solution Architecture
+
+<br>
+
+![Solution Architecture](imgs/solution_architecture.png)
+
+<br>
+
 ---
 
 
